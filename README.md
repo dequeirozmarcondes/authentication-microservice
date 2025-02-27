@@ -32,20 +32,21 @@ Esta é uma API desenvolvida em Node.js, TypeScript, Express e MongoDB para aute
 
 1. Clone o repositório:
 
-   ```bash
-   git clone https://github.com/seu-usuario/authentication-microservice.git
-   cd authentication-microservice
+```bash
+git clone https://github.com/<seu-usuario>/<seu-repositorio>.git
+cd authentication-microservice
+```
 
 2. Instale as dependências:
 
-  ```bash
-   pnpm install
-    ```
+```bash
+pnpm install
+```
 
 3. Crie um arquivo .env na raiz do projeto e configure as variáveis de ambiente:
 
 ```env
-MONGO_URI=mongodb+srv://<username>:<password>@cluster0.bxdok.mongodb.net/user-service?retryWrites=true&w=majority
+MONGO_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/user-service?retryWrites=true&w=majority
 JWT_SECRET=secret
 ```
 
@@ -53,13 +54,16 @@ JWT_SECRET=secret
 
 Inicie o servidor:
 
+```bash
 pnpm run dev
+```
 
 O servidor estará disponível em http://localhost:3000.
 
-Rotas da API
-Cadastrar Usuário
-POST /users
+## Rotas da API
+
+### Cadastrar Usuário
+**POST /users**
 
 Corpo da Requisição:
 
@@ -69,6 +73,9 @@ Corpo da Requisição:
   "email": "joao@example.com",
   "password": "senha123"
 }
+```
+
+Resposta:
 
 ```json
 {
@@ -76,9 +83,10 @@ Corpo da Requisição:
   "name": "João Silva",
   "email": "joao@example.com"
 }
+```
 
-Login de Usuário
-POST /users/login
+### Login de Usuário
+**POST /users/login**
 
 Corpo da Requisição:
 
@@ -87,14 +95,18 @@ Corpo da Requisição:
   "email": "joao@example.com",
   "password": "senha123"
 }
+```
+
+Resposta:
 
 ```json
 {
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 }
+```
 
-Buscar Usuário por ID
-GET /users/:id
+### Buscar Usuário por ID
+**GET /users/:id**
 
 Resposta:
 
@@ -104,9 +116,10 @@ Resposta:
   "name": "João Silva",
   "email": "joao@example.com"
 }
+```
 
-Atualizar Usuário
-PUT /users/:id
+### Atualizar Usuário
+**PUT /users/:id**
 
 Corpo da Requisição:
 
@@ -115,6 +128,7 @@ Corpo da Requisição:
   "name": "João Silva Atualizado",
   "email": "joao.novo@example.com"
 }
+```
 
 Resposta:
 
@@ -124,9 +138,10 @@ Resposta:
   "name": "João Silva Atualizado",
   "email": "joao.novo@example.com"
 }
+```
 
-Deletar Usuário
-DELETE /users/:id
+### Deletar Usuário
+**DELETE /users/:id**
 
 Resposta: Status 204 (Sem conteúdo).
 
