@@ -148,19 +148,6 @@ Resposta: Status 204 (Sem conteúdo).
 Documentação Interativa
 A documentação da API está disponível em http://localhost:3000/reference. Ela é gerada automaticamente com base na especificação OpenAPI (openapi.json) e permite testar as rotas diretamente no navegador.
 
-Estrutura do Projeto
-
-src/
-├── controllers/           # Camada de controle (recebe requisições e envia respostas)
-├── services/              # Lógica de negócio
-├── repositories/          # Interação com o banco de dados
-├── models/                # Definição dos modelos de dados
-├── dtos/                  # Data Transfer Objects (DTOs)
-├── config/                # Configurações do projeto (ex: conexão com o banco)
-├── utils/                 # Utilitários (ex: funções de autenticação)
-├── app.ts                 # Configuração do Express
-└── server.ts              # Inicialização do servidor
-
 Como Contribuir?
 Faça um fork do repositório.
 
