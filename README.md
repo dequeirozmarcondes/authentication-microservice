@@ -40,9 +40,11 @@ Esta é uma API desenvolvida em Node.js, TypeScript, Express e MongoDB para aute
    pnpm install
 
 3. Crie um arquivo .env na raiz do projeto e configure as variáveis de ambiente:
+
 ```env
 MONGO_URI=mongodb+srv://<username>:<password>@cluster0.bxdok.mongodb.net/user-service?retryWrites=true&w=majority
 JWT_SECRET=secret
+```
 
 4. Substitua <username> e <password> pelas credenciais do seu banco de dados.
 
