@@ -1,27 +1,48 @@
 import { User, IUser } from '../models/User';
 import { CreateUserDTO, UpdateUserDTO } from '../dtos/UserDTO';
+import { IUserRepository } from '../interfaces/IUserRepository';
 
-class UserRepository {
+class UserRepository implements IUserRepository {
     async create(data: CreateUserDTO): Promise<IUser> {
-        const user = new User(data);
-        await user.save();
-        return user;
+        try {
+            const user = new User(data);
+            await user.save();
+            return user;
+        } catch (error) {
+            throw new Error('Failed to create user');
+        }
     }
 
     async findByEmail(email: string): Promise<IUser | null> {
-        return await User.findOne({ email });
+        try {
+            return await User.findOne({ email });
+        } catch (error) {
+            throw new Error('Failed to find user by email');
+        }
     }
 
     async findById(id: string): Promise<IUser | null> {
-        return await User.findById(id);
+        try {
+            return await User.findById(id);
+        } catch (error) {
+            throw new Error('Failed to find user by ID');
+        }
     }
 
     async update(id: string, data: UpdateUserDTO): Promise<IUser | null> {
-        return await User.findByIdAndUpdate(id, data, { new: true });
+        try {
+            return await User.findByIdAndUpdate(id, data, { new: true });
+        } catch (error) {
+            throw new Error('Failed to update user');
+        }
     }
 
     async delete(id: string): Promise<void> {
-        await User.findByIdAndDelete(id);
+        try {
+            await User.findByIdAndDelete(id);
+        } catch (error) {
+            throw new Error('Failed to delete user');
+        }
     }
 }
 

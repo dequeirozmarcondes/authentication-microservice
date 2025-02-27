@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import { apiReference } from '@scalar/express-api-reference';
 import fs from 'fs';
@@ -33,6 +33,12 @@ app.post('/users/login', UserController.login);
 app.get('/users/:id', UserController.getById);
 app.put('/users/:id', UserController.update);
 app.delete('/users/:id', UserController.delete);
+
+// Tratamento de erros global
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+    console.error(err.stack);
+    res.status(500).json({ message: 'Internal Server Error' });
+});
 
 // Conecta ao MongoDB
 connectDB();

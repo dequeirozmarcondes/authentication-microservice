@@ -13,4 +13,7 @@ const UserSchema = new Schema<IUser>({
     password: { type: String, required: true },
 });
 
+// Adiciona índice único para o campo email
+UserSchema.index({ email: 1 }, { unique: true });
+
 export const User = model<IUser>('User', UserSchema);
