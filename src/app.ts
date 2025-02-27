@@ -1,10 +1,12 @@
-import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
+import express, { Request, Response, NextFunction } from 'express';
 import { apiReference } from '@scalar/express-api-reference';
 import fs from 'fs';
+import { dirname } from 'path';
 import path from 'path';
 import UserController from './controllers/UserController';
 import connectDB from './config/db';
+import { fileURLToPath } from 'url';
 
 const app = express();
 
@@ -13,6 +15,9 @@ app.use(cors());
 app.use(express.json());
 
 // Carrega a especificação OpenAPI
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 const openApiSpecification = JSON.parse(
     fs.readFileSync(path.join(__dirname, '../openapi.json'), 'utf-8')
 );
