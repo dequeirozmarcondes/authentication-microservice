@@ -31,13 +31,16 @@ Esta é uma API desenvolvida em Node.js, TypeScript, Express e MongoDB para aute
 ## Instalação
 
 1. Clone o repositório:
+
    ```bash
    git clone https://github.com/seu-usuario/authentication-microservice.git
    cd authentication-microservice
 
 2. Instale as dependências:
+
   ```bash
    pnpm install
+    ```
 
 3. Crie um arquivo .env na raiz do projeto e configure as variáveis de ambiente:
 
