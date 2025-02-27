@@ -36,11 +36,11 @@ Esta é uma API desenvolvida em Node.js, TypeScript, Express e MongoDB para aute
    cd authentication-microservice
 
 2. Instale as dependências:
-
+  ```bash
    pnpm install
 
 3. Crie um arquivo .env na raiz do projeto e configure as variáveis de ambiente:
-
+```env
 MONGO_URI=mongodb+srv://<username>:<password>@cluster0.bxdok.mongodb.net/user-service?retryWrites=true&w=majority
 JWT_SECRET=secret
 
@@ -58,12 +58,14 @@ POST /users
 
 Corpo da Requisição:
 
+```json
 {
   "name": "João Silva",
   "email": "joao@example.com",
   "password": "senha123"
 }
 
+```json
 {
   "id": "507f1f77bcf86cd799439011",
   "name": "João Silva",
@@ -74,11 +76,14 @@ Login de Usuário
 POST /users/login
 
 Corpo da Requisição:
+
+```json
 {
   "email": "joao@example.com",
   "password": "senha123"
 }
 
+```json
 {
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 }
@@ -88,6 +93,7 @@ GET /users/:id
 
 Resposta:
 
+```json
 {
   "id": "507f1f77bcf86cd799439011",
   "name": "João Silva",
@@ -98,6 +104,8 @@ Atualizar Usuário
 PUT /users/:id
 
 Corpo da Requisição:
+
+```json
 {
   "name": "João Silva Atualizado",
   "email": "joao.novo@example.com"
@@ -105,6 +113,7 @@ Corpo da Requisição:
 
 Resposta:
 
+```json
 {
   "id": "507f1f77bcf86cd799439011",
   "name": "João Silva Atualizado",
@@ -132,7 +141,7 @@ src/
 ├── app.ts                 # Configuração do Express
 └── server.ts              # Inicialização do servidor
 
-Como Contribuir
+Como Contribuir?
 Faça um fork do repositório.
 
 Crie uma branch para sua feature (git checkout -b feature/nova-feature).
