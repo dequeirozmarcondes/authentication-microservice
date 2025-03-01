@@ -1,12 +1,16 @@
+//src/app.ts
+
 import cors from 'cors';
 import express, { Request, Response, NextFunction } from 'express';
 import { apiReference } from '@scalar/express-api-reference';
 import fs from 'fs';
 import { dirname } from 'path';
 import path from 'path';
-import UserController from './presentation/controllers/UserController';
+import UserController from './controllers/UserController';
 import connectDB from './config/db';
 import { fileURLToPath } from 'url';
+
+import { authenticate } from './middlewares/authenticate';
 
 const app = express();
 
@@ -35,7 +39,7 @@ app.use(
 // Rotas da API
 app.post('/users', UserController.create);
 app.post('/users/login', UserController.login);
-app.get('/users/:id', UserController.getById);
+app.get('/users/:id', authenticate, UserController.getById);
 app.put('/users/:id', UserController.update);
 app.delete('/users/:id', UserController.delete);
 

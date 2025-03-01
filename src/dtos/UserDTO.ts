@@ -1,3 +1,5 @@
+//src/dtos/UserDTO.ts
+
 /**
  * DTO para criação de usuário.
  */

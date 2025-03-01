@@ -1,7 +1,6 @@
 import { IUserRepository } from '../interfaces/IUserRepository';
 import { CreateUserDTO, UpdateUserDTO, UserResponseDTO } from '../dtos/UserDTO';
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
 
 class UserService {
     private userRepository: IUserRepository;
@@ -24,16 +23,6 @@ class UserService {
             name: user.name,
             email: user.email,
         };
-    }
-
-    async login(email: string, password: string): Promise<string | null> {
-        const user = await this.userRepository.findByEmail(email);
-        if (!user || !(await bcrypt.compare(password, user.password))) {
-            return null;
-        }
-
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET || 'secret', { expiresIn: '1h' });
-        return token;
     }
 
     async getById(id: string): Promise<UserResponseDTO | null> {

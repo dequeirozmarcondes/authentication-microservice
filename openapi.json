@@ -5,11 +5,83 @@
         "version": "1.0.0",
         "description": "API para gerenciamento de usuários"
     },
+    "components": {
+        "securitySchemes": {
+            "BearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        },
+        "schemas": {
+            "CreateUserDTO": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "João Silva"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "joao@example.com"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "senha123"
+                    }
+                },
+                "required": [
+                    "name",
+                    "email",
+                    "password"
+                ]
+            },
+            "UpdateUserDTO": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "João Silva"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "joao@example.com"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "novaSenha123"
+                    }
+                }
+            },
+            "UserResponseDTO": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "507f1f77bcf86cd799439011"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "João Silva"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "joao@example.com"
+                    }
+                }
+            }
+        }
+    },
     "paths": {
         "/users": {
             "post": {
                 "summary": "Cria um novo usuário",
                 "description": "Cadastra um novo usuário no sistema.",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -103,6 +175,11 @@
                         "example": "507f1f77bcf86cd799439011"
                     }
                 ],
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Usuário encontrado",
@@ -131,6 +208,11 @@
                             "type": "string"
                         },
                         "example": "507f1f77bcf86cd799439011"
+                    }
+                ],
+                "security": [
+                    {
+                        "BearerAuth": []
                     }
                 ],
                 "requestBody": {
@@ -173,72 +255,17 @@
                         "example": "507f1f77bcf86cd799439011"
                     }
                 ],
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
                 "responses": {
                     "204": {
                         "description": "Usuário deletado com sucesso"
                     },
                     "404": {
                         "description": "Usuário não encontrado"
-                    }
-                }
-            }
-        }
-    },
-    "components": {
-        "schemas": {
-            "CreateUserDTO": {
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "type": "string",
-                        "example": "João Silva"
-                    },
-                    "email": {
-                        "type": "string",
-                        "example": "joao@example.com"
-                    },
-                    "password": {
-                        "type": "string",
-                        "example": "senha123"
-                    }
-                },
-                "required": [
-                    "name",
-                    "email",
-                    "password"
-                ]
-            },
-            "UpdateUserDTO": {
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "type": "string",
-                        "example": "João Silva"
-                    },
-                    "email": {
-                        "type": "string",
-                        "example": "joao@example.com"
-                    },
-                    "password": {
-                        "type": "string",
-                        "example": "novaSenha123"
-                    }
-                }
-            },
-            "UserResponseDTO": {
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "type": "string",
-                        "example": "507f1f77bcf86cd799439011"
-                    },
-                    "name": {
-                        "type": "string",
-                        "example": "João Silva"
-                    },
-                    "email": {
-                        "type": "string",
-                        "example": "joao@example.com"
                     }
                 }
             }

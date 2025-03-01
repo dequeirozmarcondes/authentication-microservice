@@ -1,3 +1,5 @@
+//src/interfaces/IUserRepository.ts
+
 import { CreateUserDTO, UpdateUserDTO } from '../dtos/UserDTO';
 import { IUser } from '../models/User';
 

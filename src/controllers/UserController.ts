@@ -1,10 +1,10 @@
 //src/controllers/UserController.ts
 
 import { Request, Response } from 'express';
-import UserService from '../../services/UserService';
-import { CreateUserDTO, UpdateUserDTO } from '../../dtos/UserDTO';
+import UserService from '../services/UserService';
+import AuthService from '../authentication-jwt/AuthService';
+import { CreateUserDTO, UpdateUserDTO } from '../dtos/UserDTO';
 import { createUserSchema, loginUserSchema, updateUserSchema } from '../schemas/userValidation';
-
 
 class UserController {
     async create(req: Request, res: Response): Promise<void> {
@@ -27,7 +27,7 @@ class UserController {
         }
 
         const { email, password } = req.body;
-        const token = await UserService.login(email, password);
+        const token = await AuthService.login(email, password);
 
         if (!token) {
             res.status(401).json({ message: 'Invalid credentials' });
