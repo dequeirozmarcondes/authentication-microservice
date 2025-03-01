@@ -19,24 +19,6 @@ class UserController {
         res.status(201).json(user);
     }
 
-    async login(req: Request, res: Response): Promise<void> {
-        const { error } = loginUserSchema.validate(req.body);
-        if (error) {
-            res.status(400).json({ message: error.details[0].message });
-            return;
-        }
-
-        const { email, password } = req.body;
-        const token = await AuthService.login(email, password);
-
-        if (!token) {
-            res.status(401).json({ message: 'Invalid credentials' });
-            return;
-        }
-
-        res.json({ token });
-    }
-
     async getById(req: Request, res: Response): Promise<void> {
         const { id } = req.params;
         const user = await UserService.getById(id);

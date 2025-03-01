@@ -11,6 +11,7 @@ import connectDB from './config/db';
 import { fileURLToPath } from 'url';
 
 import { authenticate } from './middlewares/authenticate';
+import AuthController from './controllers/AuthController';
 
 const app = express();
 
@@ -38,7 +39,8 @@ app.use(
 
 // Rotas da API
 app.post('/users', UserController.create);
-app.post('/users/login', UserController.login);
+app.post('/users/login', AuthController.login);
+app.post('/users/refresh-token', AuthController.refreshToken);
 app.get('/users/:id', authenticate, UserController.getById);
 app.put('/users/:id', UserController.update);
 app.delete('/users/:id', UserController.delete);
