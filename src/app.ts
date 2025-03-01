@@ -4,7 +4,7 @@ import { apiReference } from '@scalar/express-api-reference';
 import fs from 'fs';
 import { dirname } from 'path';
 import path from 'path';
-import UserController from './controllers/UserController';
+import UserController from './presentation/controllers/UserController';
 import connectDB from './config/db';
 import { fileURLToPath } from 'url';
 

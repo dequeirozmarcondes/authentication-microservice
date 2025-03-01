@@ -1,25 +1,10 @@
+//src/controllers/UserController.ts
+
 import { Request, Response } from 'express';
-import Joi from 'joi';
-import UserService from '../services/UserService';
-import { CreateUserDTO, UpdateUserDTO } from '../dtos/UserDTO';
+import UserService from '../../services/UserService';
+import { CreateUserDTO, UpdateUserDTO } from '../../dtos/UserDTO';
+import { createUserSchema, loginUserSchema, updateUserSchema } from '../schemas/userValidation';
 
-// Esquemas de validação
-const createUserSchema = Joi.object({
-    name: Joi.string().required(),
-    email: Joi.string().email().required(),
-    password: Joi.string().min(6).required(),
-});
-
-const loginUserSchema = Joi.object({
-    email: Joi.string().email().required(),
-    password: Joi.string().required(),
-});
-
-const updateUserSchema = Joi.object({
-    name: Joi.string(),
-    email: Joi.string().email(),
-    password: Joi.string().min(6),
-});
 
 class UserController {
     async create(req: Request, res: Response): Promise<void> {

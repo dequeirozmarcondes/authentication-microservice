@@ -1,7 +1,9 @@
 {
 	"name": "project-ipv4-nodejs",
 	"version": "1.0.0",
-	"description": "",
+	"description": "Microsserviço para gerenciamento e autenticação de usuários.",
+	"license": "MIT",
+	"author": "Renato de Queiroz Marcondes",
 	"main": "index.ts",
 	"type": "module",
 	"scripts": {
