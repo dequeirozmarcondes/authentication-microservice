@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import AuthService from '../authentication-jwt/AuthService';
+import AuthService from '../../infrastructure/authentication-jwt/AuthService';
 import { loginUserSchema } from '../schemas/userValidation';
 
 class AuthController {

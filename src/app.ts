@@ -6,12 +6,12 @@ import { apiReference } from '@scalar/express-api-reference';
 import fs from 'fs';
 import { dirname } from 'path';
 import path from 'path';
-import UserController from './controllers/UserController';
-import connectDB from './config/db';
+import UserController from './presentation/controllers/UserController';
+import connectDB from './infrastructure/database/configMongoose';
 import { fileURLToPath } from 'url';
 
-import { authenticate } from './middlewares/authenticate-middleware';
-import AuthController from './controllers/AuthController';
+import { authenticate } from './presentation/middlewares/authenticate-middleware';
+import AuthController from './presentation/controllers/AuthController';
 
 const app = express();
 

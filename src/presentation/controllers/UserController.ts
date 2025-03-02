@@ -1,7 +1,7 @@
 //src/controllers/UserController.ts
 
 import { Request, Response } from 'express';
-import UserService from '../services/UserService';
+import UserService from '../../application/services/UserService';
 import { CreateUserDTO, UpdateUserDTO } from '../dtos/UserDTO';
 import { createUserSchema, loginUserSchema, updateUserSchema } from '../schemas/userValidation';
 

@@ -1,6 +1,6 @@
-import { User, IUser } from '../models/User';
+import { User, IUser } from '../../domain/entities/User';
 import { CreateUserDTO, UpdateUserDTO } from '../dtos/UserDTO';
-import { IUserRepository } from '../interfaces/IUserRepository';
+import { IUserRepository } from '../../domain/interfaces/IUserRepository';
 
 class UserRepository implements IUserRepository {
     async create(data: CreateUserDTO): Promise<IUser> {
