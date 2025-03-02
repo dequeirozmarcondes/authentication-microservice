@@ -38,6 +38,11 @@ class AuthController {
 
         res.json(newTokens); // Retorna o novo accessToken
     }
+
+    async logout(req: Request, res: Response): Promise<void> {
+        // Como não estamos armazenando tokens no banco de dados, o logout não requer nenhuma ação específica.
+        res.status(200).json({ message: 'Logged out successfully' });
+    }
 }
 
 export default new AuthController();

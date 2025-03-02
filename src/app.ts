@@ -10,7 +10,7 @@ import UserController from './controllers/UserController';
 import connectDB from './config/db';
 import { fileURLToPath } from 'url';
 
-import { authenticate } from './middlewares/authenticate';
+import { authenticate } from './middlewares/authenticate-middleware';
 import AuthController from './controllers/AuthController';
 
 const app = express();
@@ -40,6 +40,7 @@ app.use(
 // Rotas da API
 app.post('/users', UserController.create);
 app.post('/users/login', AuthController.login);
+app.post('/users/logout', authenticate, AuthController.logout);
 app.post('/users/refresh-token', AuthController.refreshToken);
 app.get('/users/:id', authenticate, UserController.getById);
 app.put('/users/:id', UserController.update);

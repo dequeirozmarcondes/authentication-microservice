@@ -14,6 +14,12 @@ export const authenticate = (req: Request, res: Response, next: NextFunction): v
         req.user = { id: decoded.id }; // Adiciona o ID do usuário no objeto da requisição
         next(); // Passa para o próximo middleware ou rota
     } catch (error) {
-        res.status(400).json({ message: 'Invalid token.' });
+        if (error instanceof jwt.TokenExpiredError) {
+            res.status(401).json({ message: 'Token expired.' });
+        } else if (error instanceof jwt.JsonWebTokenError) {
+            res.status(400).json({ message: 'Invalid token.' });
+        } else {
+            res.status(500).json({ message: 'Internal server error.' });
+        }
     }
 };

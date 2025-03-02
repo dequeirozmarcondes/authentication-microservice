@@ -35,7 +35,6 @@ class AuthService {
 
             return { accessToken };
         } catch (error) {
-            // Se o refresh token for inválido ou expirado, retorna null
             return null;
         }
     }

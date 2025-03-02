@@ -164,6 +164,60 @@
                 }
             }
         },
+        "/users/logout": {
+            "post": {
+                "summary": "Realiza o logout do usuário",
+                "description": "Invalida o refresh token do usuário, impedindo que ele seja usado para renovar o access token.",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "refreshToken": {
+                                        "type": "string",
+                                        "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                                    }
+                                },
+                                "required": [
+                                    "refreshToken"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Logout realizado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Logged out successfully"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Refresh token inválido ou ausente"
+                    },
+                    "401": {
+                        "description": "Token de acesso inválido ou ausente"
+                    }
+                }
+            }
+        },
         "/users/refresh-token": {
             "post": {
                 "summary": "Renova o access token",

@@ -2,7 +2,6 @@
 
 import { Request, Response } from 'express';
 import UserService from '../services/UserService';
-import AuthService from '../authentication-jwt/AuthService';
 import { CreateUserDTO, UpdateUserDTO } from '../dtos/UserDTO';
 import { createUserSchema, loginUserSchema, updateUserSchema } from '../schemas/userValidation';
 
