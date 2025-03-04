@@ -1,48 +1,59 @@
-import { Request, Response } from 'express';
-import AuthService from '../../infrastructure/authentication-jwt/AuthService.js';
-import { loginUserSchema } from '../schemas/userValidation.js';
+import { Request, Response } from "express";
+import { AuthService } from "@/infrastructure/authentication-jwt/AuthService.js";
+import { UserRepository } from "../repositories/UserRepository.js";
+import { loginUserSchema } from "../schemas/userValidation.js";
+
+// Instância do UserRepository
+const userRepository = new UserRepository();
+
+// Instância do AuthService com UserRepository injetado
+const authService = new AuthService(userRepository);
 
 class AuthController {
-    async login(req: Request, res: Response): Promise<void> {
-        const { error } = loginUserSchema.validate(req.body);
-        if (error) {
-            res.status(400).json({ message: error.details[0].message });
-            return;
-        }
-
-        const { email, password } = req.body;
-        const token = await AuthService.login(email, password);
-
-        if (!token) {
-            res.status(401).json({ message: 'Invalid credentials' });
-            return;
-        }
-
-        res.json({ token });
+  async login(req: Request, res: Response): Promise<void> {
+    const { error } = loginUserSchema.validate(req.body);
+    if (error) {
+      res.status(400).json({ message: error.details[0].message });
+      return;
     }
 
-    async refreshToken(req: Request, res: Response): Promise<void> {
-        const { refreshToken } = req.body;
+    const { email, password } = req.body;
 
-        if (!refreshToken) {
-            res.status(400).json({ message: 'Refresh token is required' });
-            return;
-        }
+    // Usa o método login do AuthService
+    const tokens = await authService.login(email, password);
 
-        const newTokens = await AuthService.refreshToken(refreshToken);
-
-        if (!newTokens) {
-            res.status(400).json({ message: 'Invalid refresh token' });
-            return;
-        }
-
-        res.json(newTokens); // Retorna o novo accessToken
+    if (!tokens) {
+      res.status(401).json({ message: "Invalid credentials" });
+      return;
     }
 
-    async logout(req: Request, res: Response): Promise<void> {
-        // Como não estamos armazenando tokens no banco de dados, o logout não requer nenhuma ação específica.
-        res.status(200).json({ message: 'Logged out successfully' });
+    res.json(tokens); // Retorna accessToken e refreshToken
+  }
+
+  async refreshToken(req: Request, res: Response): Promise<void> {
+    const { refreshToken } = req.body;
+
+    if (!refreshToken) {
+      res.status(400).json({ message: "Refresh token is required" });
+      return;
     }
+
+    // Usa o método refreshToken do AuthService
+    const newTokens = await authService.refreshToken(refreshToken);
+
+    if (!newTokens) {
+      res.status(400).json({ message: "Invalid refresh token" });
+      return;
+    }
+
+    res.json(newTokens); // Retorna o novo accessToken
+  }
+
+  async logout(req: Request, res: Response): Promise<void> {
+    // Como não estamos armazenando tokens no banco de dados, o logout não requer nenhuma ação específica.
+    res.status(200).json({ message: "Logged out successfully" });
+  }
 }
 
+// Exporta uma instância do AuthController
 export default new AuthController();
