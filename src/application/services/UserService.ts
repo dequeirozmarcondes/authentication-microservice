@@ -6,7 +6,7 @@ import {
 } from "../../presentation/dtos/UserDTO.js";
 import bcrypt from "bcryptjs";
 
-class UserService {
+export class UserService {
   private userRepository: IUserRepository;
 
   constructor(userRepository: IUserRepository) {
@@ -34,7 +34,7 @@ class UserService {
     };
   }
 
-  async getById(id: string): Promise<UserResponseDTO | null> {
+  async findById(id: string): Promise<UserResponseDTO | null> {
     const user = await this.userRepository.findById(id);
     if (!user) return null;
 
@@ -73,7 +73,3 @@ class UserService {
     await this.userRepository.delete(id);
   }
 }
-
-// Exporta uma instância do serviço com o repositório padrão
-import UserRepository from "../../presentation/repositories/UserRepository.js";
-export default new UserService(UserRepository);
