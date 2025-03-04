@@ -1,7 +1,7 @@
 //src/interfaces/IUserRepository.ts
 
-import { CreateUserDTO, UpdateUserDTO } from '../../presentation/dtos/UserDTO';
-import { IUser } from '../entities/User';
+import { CreateUserDTO, UpdateUserDTO } from '../../presentation/dtos/UserDTO.js';
+import { IUser } from '../entities/User.js';
 
 export interface IUserRepository {
     create(data: CreateUserDTO): Promise<IUser>;

@@ -1,6 +1,6 @@
-import { User, IUser } from '../../domain/entities/User';
-import { CreateUserDTO, UpdateUserDTO } from '../dtos/UserDTO';
-import { IUserRepository } from '../../domain/interfaces/IUserRepository';
+import { User, IUser } from '../../domain/entities/User.js';
+import { CreateUserDTO, UpdateUserDTO } from '../dtos/UserDTO.js';
+import { IUserRepository } from '../../domain/interfaces/IUserRepository.js';
 
 class UserRepository implements IUserRepository {
     async create(data: CreateUserDTO): Promise<IUser> {

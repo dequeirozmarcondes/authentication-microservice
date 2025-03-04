@@ -1,5 +1,5 @@
-import { IUserRepository } from '../../domain/interfaces/IUserRepository';
-import { CreateUserDTO, UpdateUserDTO, UserResponseDTO } from '../../presentation/dtos/UserDTO';
+import { IUserRepository } from '../../domain/interfaces/IUserRepository.js';
+import { CreateUserDTO, UpdateUserDTO, UserResponseDTO } from '../../presentation/dtos/UserDTO.js';
 import bcrypt from 'bcryptjs';
 
 class UserService {
@@ -61,5 +61,5 @@ class UserService {
 }
 
 // Exporta uma instância do serviço com o repositório padrão
-import UserRepository from '../../presentation/repositories/UserRepository';
+import UserRepository from '../../presentation/repositories/UserRepository.js';
 export default new UserService(UserRepository);

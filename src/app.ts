@@ -6,21 +6,21 @@ import { apiReference } from '@scalar/express-api-reference';
 import fs from 'fs';
 import { dirname } from 'path';
 import path from 'path';
-import UserController from './presentation/controllers/UserController';
-import connectDB from './infrastructure/database/configMongoose';
+import UserController from './presentation/controllers/UserController.js';
+import connectDB from './infrastructure/database/configMongoose.js';
 import { fileURLToPath } from 'url';
 
-import { authenticate } from './presentation/middlewares/authenticate-middleware';
-import AuthController from './presentation/controllers/AuthController';
+import { authenticate } from './presentation/middlewares/authenticate-middleware.js';
+import AuthController from './presentation/controllers/AuthController.js';
 
-const app = express();
+const app: any = express();
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 
 // Carrega a especificação OpenAPI
-const __filename = fileURLToPath(import.meta.url);
+const __filename = fileURLToPath(new URL(import.meta.url));
 const __dirname = dirname(__filename);
 
 const openApiSpecification = JSON.parse(

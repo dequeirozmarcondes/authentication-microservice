@@ -1,9 +1,9 @@
 //src/controllers/UserController.ts
 
 import { Request, Response } from 'express';
-import UserService from '../../application/services/UserService';
-import { CreateUserDTO, UpdateUserDTO } from '../dtos/UserDTO';
-import { createUserSchema, loginUserSchema, updateUserSchema } from '../schemas/userValidation';
+import UserService from '../../application/services/UserService.js';
+import { CreateUserDTO, UpdateUserDTO } from '../dtos/UserDTO.js';
+import { createUserSchema, updateUserSchema } from '../schemas/userValidation.js';
 
 class UserController {
     async create(req: Request, res: Response): Promise<void> {

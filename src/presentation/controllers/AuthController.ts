@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import AuthService from '../../infrastructure/authentication-jwt/AuthService';
-import { loginUserSchema } from '../schemas/userValidation';
+import AuthService from '../../infrastructure/authentication-jwt/AuthService.js';
+import { loginUserSchema } from '../schemas/userValidation.js';
 
 class AuthController {
     async login(req: Request, res: Response): Promise<void> {

@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
-import { IUserRepository } from '../../domain/interfaces/IUserRepository';
 import bcrypt from 'bcryptjs';
-import UserRepository from '../../presentation/repositories/UserRepository';
+import { IUserRepository } from '../../domain/interfaces/IUserRepository.js';
+import UserRepository from '../../presentation/repositories/UserRepository.js';
 
 class AuthService {
     private userRepository: IUserRepository;
